@@ -1,0 +1,217 @@
+{% load blog_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/footer.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/buttons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/books.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/books1.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/books2.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/slider.css' %}">
+    <link rel="shortcut icon" href="../../../media/edit.svg" />
+    
+    {% if Заголовок %}
+        <title>Notemates - {{ Заголовок }}</title>
+    {% else %}
+        <title>Notemates</title>
+    {% endif %}
+    <style>
+      a:link {
+        text-decoration: none ;
+      }
+    </style>
+</head>
+<body>
+    <header class="site-header" style="background-color: #333333;">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Notemates</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">Про нас</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'post-create' %}">Создать конспект</a>
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Профиль</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Выйти</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Войти</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Зарегистрироваться</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+        <div class="col-md-4">
+          <div class="content-section" style="    display: flex;
+          justify-content: center;
+          align-items: center;">
+            <div class="shelf">
+              <a href="https://wiki.beyondcurriculum.kz/" target="_blank" class="book"></a>
+              <a href="https://www.newscientist.com/article/mg24732990-600-why-there-is-no-such-thing-as-a-healthy-diet-that-works-for-everyone/" target="_blank" class="book"></a>
+              <a href="https://blog.beyondcurriculum.kz/pascal-triangle/" target="_blank" class="book"></a>
+              <a href="https://www.scientificamerican.com/article/how-many-aliens-are-in-the-milky-way-astronomers-turn-to-statistics-for-answers/" target="_blank" class="book"></a>
+              <a href="https://www.aldaily.com/" target="_blank" class="book"></a>
+              <a href="https://www.newyorker.com/magazine/2020/09/14/how-can-we-pay-for-creativity-in-the-digital-age" target="_blank" class="book"></a>
+              <a href="https://thecritic.co.uk/issues/september-2020/time-flies-relatively-speaking/" target="_blank" class="book"></a>
+              <a href="https://www.thenation.com/article/culture/joanne-mcneil-lurking-review/" target="_blank" class="book"></a>
+              <a href="https://mydiscoveries.ru/naglyadno-o-tom-pochemu-skorost-sveta-ne-takaya-byistraya" target="_blank" class="book"></a>
+              <a href="https://blog.beyondcurriculum.kz/foundation-of-math/" target="_blank" class="book"></a>
+            
+              <a href="https://blog.beyondcurriculum.kz/how-does-vision-work/" target="_blank" class="book"></a>
+              <a href="https://www.thenation.com/article/culture/joanne-mcneil-lurking-review/" target="_blank" class="book"></a>
+              <a href="http://discovermagazine.com/" target="_blank" class="book"></a>
+              <a href="https://www.popsci.com/story/science/gw-orionis-star-trio/" target="_blank" class="book"></a>
+              <a href="https://allthatsinteresting.com/lunar-crater-radio-telescope" target="_blank" class="book"></a>
+              <a href="http://www.forbes.com/" target="_blank" class="book"></a>
+              <a href="https://nplusonemag.com/" target="_blank" class="book"></a>
+              <a href="http://www.observer.com/" target="_blank" class="book"></a>
+              <a href="https://www.technologyreview.com/" target="_blank" class="book"></a>
+              <a href="https://aeon.co/essays/complex-systems-science-allows-us-to-see-new-paths-forward" target="_blank" class="book"></a>
+            </div>
+          </div>
+          <div class="content-section" style="    display: flex;
+          justify-content: center;
+          align-items: center;">
+            <div class="shelf1">
+              <a href="https://www.technologyreview.com/2020/09/11/1008335/new-standards-for-ai-clinical-trials-will-help-spot-snake-oil-and-hype/" target="_blank" class="book1"></a>
+              <a href="https://www.washingtonpost.com/health/2020/09/15/virus-nyclockdown/?hpid=hp_national1-8-12_7pm-tue-nyclockdown%3Ahomepage%2Fstory-ans" target="_blank" class="book1"></a>
+              <a href="https://www.ft.com/" target="_blank" class="book1"></a>
+              <a href="https://www.publicbooks.org/for-the-slow-work-of-critique-in-critical-times/" target="_blank" class="book1"></a>
+              <a href="https://www.newyorker.com/magazine/2020/08/31/how-wagner-shaped-hollywood" target="_blank" class="book1"></a>
+              <a href="https://www.scientificamerican.com/article/if-there-are-aliens-out-there-where-are-they/" target="_blank" class="book1"></a>
+              <a href="https://www.sciencenewsforstudents.org/article/top-10-tips-study-smarter-not-longer-study-skills" target="_blank" class="book1"></a>
+              <a href="https://www.scientificamerican.com/video/seeing-through-the-sea/" target="_blank" class="book1"></a>
+              <a href="https://hudsonreview.com/2020/09/on-a-tight-rope/#.X0hR0X6SnBi" target="_blank" class="book1"></a>
+              <a href="http://www.independent.co.uk/" target="_blank" class="book1"></a>
+            
+              <a href="https://www.newstatesman.com/culture/books/2020/08/realism-magic" target="_blank" class="book1"></a>
+              <a href="https://thepointmag.com/dialogue/mistakes-weve-made-george-kateb/" target="_blank" class="book1"></a>
+              <a href="https://www.nytimes.com/2020/09/15/technology/apple-watch-is-a-private-road.html" target="_blank" class="book1"></a>
+              <a href="https://spectrum.ieee.org/artificial-intelligence/machine-learning/this-ai-poet-mastered-rhythm-rhyme-and-natural-language-to-write-like-shakespeare" target="_blank" class="book1"></a>
+              <a href="https://www.spectator.co.uk/article/the-art-of-the-hermit" target="_blank" class="book1"></a>
+              <a href="https://www.thenation.com/article/culture/anya-bernstein-future-immortality-russia-cryogenics-review/" target="_blank" class="book1"></a>
+              <a href="https://www.technologyreview.com/2020/09/14/1008323/ai-ethics-representation-artificial-intelligence-opinion/" target="_blank" class="book1"></a>
+              <a href="https://hbr.org/2020/09/dont-just-lead-your-people-through-trauma-help-them-grow?ab=hero-subleft-3" target="_blank" class="book1"></a>
+              <a href="https://www.1843magazine.com/upfront/brave-new-word/do-you-speak-corona-a-guide-to-covid19-slang" target="_blank" class="book1"></a>
+              <a href="https://www.wsj.com/articles/apples-product-prices-are-getting-more-confusing-11600210965?mod=hp_lista_pos1" target="_blank" class="book1"></a>
+            </div>
+          </div>
+          <div class="content-section" style="    display: flex;
+          justify-content: center;
+          align-items: center;">
+            <div class="shelf2">
+              <a href="https://blog.beyondcurriculum.kz/macroeconomics-1-introduction/" target="_blank" class="book2"></a>
+              <a href="https://www.nationalaffairs.com/publications/detail/the-erosion-of-deep-literacy" target="_blank" class="book2"></a>
+              <a href="https://www.nybooks.com/articles/2020/08/20/buzz-buzz-interspecies-communication/" target="_blank" class="book2"></a>
+              <a href="https://www.historytoday.com/history-matters/pause-and-effect" target="_blank" class="book2"></a>
+              <a href="https://lareviewofbooks.org/article/binge-and-purge-the-rise-of-extreme-film-criticism/" target="_blank" class="book2"></a>
+              <a href="https://www.sciencenews.org/article/coronavirus-covid19-infection-lung-cell-images" target="_blank" class="book2"></a>
+              <a href="https://mydiscoveries.ru/pochemu-radiatsiya-assotsiiruetsya-s-zelenyim-tsvetom" target="_blank" class="book2"></a>
+              <a href="https://thebaffler.com/salvos/they-made-a-movie-out-of-it-pogue" target="_blank" class="book2"></a>
+              <a href="https://www.bbc.com/worklife/article/20191118-what-shapes-a-polymath---and-do-we-need-them-more-than-ever" target="_blank" class="book2"></a>
+              <a href="https://blog.beyondcurriculum.kz/how-to-be-productive/" target="_blank" class="book2"></a>
+            
+              <a href="http://economist.com/" target="_blank" class="book2"></a>
+              <a href="https://www.usatoday.com/story/life/2020/05/29/george-floyd-death-donations-resources-justice-petitions/5282539002/" target="_blank" class="book2"></a>
+              <a href="https://www.sciencedaily.com/releases/2020/09/200910110824.htm" target="_blank" class="book2"></a>
+              <a href="https://www.the-american-interest.com/2019/10/08/artificial-intelligence-whats-to-fear/" target="_blank" class="book2"></a>
+              <a href="https://www.washingtonpost.com/entertainment/music/what-does-a-conductor-do-anyway-a-music-critic-lays-it-out/2019/10/01/5205df24-decb-11e9-be96-6adb81821e90_story.html" target="_blank" class="book2"></a>
+              <a href="https://nypost.com/2020/09/15/scientists-create-gene-edited-animals-to-boost-food-production/" target="_blank" class="book2"></a>
+              <a href="https://www.nytimes.com/2019/09/18/style/all-the-writers-workshops.html" target="_blank" class="book2"></a>
+              <a href="https://www.newyorker.com/tech/annals-of-technology/was-e-mail-a-mistake" target="_blank" class="book2"></a>
+              <a href="https://www.prospectmagazine.co.uk/features/prospect-worlds-top-50-thinkers-2019" target="_blank" class="book2"></a>
+              <a href="https://www.nytimes.com/2020/09/11/your-money/cash-credit-cards-coronavirus.html" target="_blank" class="book2"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER START -->
+  <!-- Site footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>Про нас</h6>
+          <p class="text-justify">Цель нашей команды – улучшить академические знания учащихся учебных заведений путем облегчения процесса обучения. Как ученики 12 класса, мы хорошо понимаем, что во время обучения или в процессе подготовки к экзаменам очень важно иметь правильные ресурсы и конспекты. Исходя из этого мы решили создать этот проект, где вы можете создавать свои конспекты и делится ими, а также, можете смотреть нужные вам конспекты других людей и сохранять их у себя. Присоединяйтесь к нам, чтобы, делая легче процесс вашего обучения, вы смогли помочь другим в получении академических знаний.</p>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Предметы</h6>
+          <ul class="footer-links">
+            <li><a href="/search?query=physics">Физика</a></li>
+            <li><a href="/search?query=chemistry">Химия</a></li>
+            <li><a href="/search?query=math">Математика</a></li>
+            <li><a href="/search?query=ict">Информатика</a></li>
+            <li><a href="/search?query=biology">Биология</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Ссылки</h6>
+          <ul class="footer-links">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/about/">Про Нас</a></li>
+            <li><a href="/post/new/">Создать конспект</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Notemates. Share notes!</a>
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="#" target="_blank"><i class="fa fa-instagram" style="margin-top: 12px;"></i></a></li>
+            <li><a class="twitter" href="https://vk.com/notemates" target="_blank" ><i class="fa fa-vk"  style="margin-top: 12px;"></i></a></li>
+            <li><a class="dribbble" href="https://t.me/notemates" target="_blank"><i class="fa fa-telegram" style="margin-top: 12px;"></i></a></li>
+            <li><a class="linkedin" href="mailto:notematescontact@gmail.com" target="_blank"><i class="fa fa-google"  style="margin-top: 12px;"></i></a></li>   
+          </ul>
+        </div>
+      </div>
+    </div>
+</footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'blog/slider.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

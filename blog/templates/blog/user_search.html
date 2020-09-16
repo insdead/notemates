@@ -1,0 +1,7 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <h1>Search page</h1>
+    {% for user in users %}
+        <a class="mr-2" href="{{ user.get_absolute_url }}">{{ user }}</a><br>
+    {% endfor %}
+{% endblock content %}

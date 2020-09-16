@@ -1,0 +1,241 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+
+    ::selection {
+        color: #fff;
+        background-color: #005AEE;
+    }
+    
+    .collection-card {
+        position: relative;
+        width: 370px;
+        height: 370px;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #fff;
+        font-family: 'neuzeit-grotesk', sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        font-size: 1em;
+        line-height: 1.5;
+        color: #303336;
+        box-shadow: 0 40px 40px -20px #8fc7d544;
+    }
+    
+    .collection-card .card-img {
+        position: relative;
+        width: 100%;
+        height: 240px;
+    }
+    
+    .collection-card .card-img a {
+        font-size: 0;
+    }
+    
+    .collection-card .photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: 300ms;
+    }
+    
+    .collection-card .avator {
+        position: absolute;
+        bottom: 0;
+        left: 40px;
+        transform: translateY(50%);
+        width: 60px;
+        height: 60px;
+        border-radius: 50px;
+        transition: 300ms;
+    }
+    
+    .collection-card .card-name {
+        position: absolute;
+        top: 30px;
+        left: 40px;
+        color: #ffffffdd;
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+    
+    .collection-card .card-text {
+        width: 100%;
+        height: auto;
+        padding: 50px 40px 20px;
+        text-align: center;
+    }
+    
+    .collection-card .title {
+        font-weight: 400;
+    }
+    
+    .collection-card .author {
+        font-size: .875em;
+        color: #7B8591;
+    }
+    
+    h5 {
+        font-size: 1.25em;
+    }
+    
+    h6 {
+        font-size: 1em;
+    }
+    
+    
+    /* ------------------ */
+    /* Interactive Effect */
+    /* ------------------ */
+    
+    .collection-card .photo:hover {
+        filter: grayscale(100%);
+    }
+    
+    .collection-card .avator:hover {
+        box-shadow: 0 0 0 4px #fff;
+    }
+    
+    
+    /* Display this style when screen-width is lower than 425px */
+    @media only screen and (max-width: 425px) {
+    
+        .collection-card {
+            width: 100%;
+            height: auto;
+            min-height: 370px;
+            margin: 20px;
+        }
+    
+    }
+    
+/*  */
+
+fieldset {
+  position: relative;
+  display: inline-block;
+  padding: 0 0 0 40px;
+  background: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+input,
+button {
+  position: relative;
+  width: 200px;
+  height: 50px;
+  float: left;
+  padding: 0;
+  display: inline-block;
+}
+
+input {
+  color: #666;
+  z-index: 2;
+  border: 0 none;
+}
+input:focus {
+  outline: 0 none;
+}
+input:focus + button {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+input:focus + button .fa {
+  -webkit-transform: translate(0px, 0);
+      -ms-transform: translate(0px, 0);
+          transform: translate(0px, 0);
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  color: #fff;
+}
+
+button {
+  z-index: 1;
+  width: 50px;
+  border: 0 none;
+  background: #333333;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;  
+  -webkit-transform: translate(-50px, 0);
+      -ms-transform: translate(-50px, 0);
+          transform: translate(-50px, 0);
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.fa-search {
+  font-size: 1.4rem;
+  color: #333333;
+  z-index: 3;
+  top: 25%;
+  -webkit-transform: translate(-190px, 0);
+      -ms-transform: translate(-190px, 0);
+          transform: translate(-190px, 0);
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  -webkit-transition: all 0.1s ease-in-out;
+          transition: all 0.1s ease-in-out;
+}
+ 
+    </style>
+</head>
+{% extends "blog/base.html" %}
+{% block content %}
+    <form method="GET" action="/search" ><div class="forme"><fieldset><input style="background-color: #eee;" name="query" type="search" placeholder="    Search..." /><button type="submit"></button></fieldset></div></form>
+    {% for post in posts %}
+        <main>
+          <section class="collection-card" style="width: 100%;">
+              <div class="card-img">
+                {% if post.image %}
+                  <a href="{% url 'post-detail' post.id %}"><img class="photo" src="{{ post.image.url }}" alt="Unsplash Photo" width="370"></a>
+                {% endif %}
+                  <a href="#"><img class="avator" src="{{ post.author.profile.image.url }}" alt="UI Faces Avator" width="60"></a>
+                  <a class="mr-2" href="{% url 'user-posts' post.author.username %}">Show posts by {{ post.author }}</a>
+                  <h6 class="card-name" style="color: #000;">{{ post.date_posted|date:"F d, Y" }} - {{ post.Урок }}</h6>
+                  
+              </div>
+              
+              <div class="card-text">
+                  <h5 class="title"><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.Заголовок }}</a></h5>
+                  <a class="" style="color: #000;" href="{% url 'user-posts' post.author.username %}">Show posts by {{ post.author }}</a>
+
+              </div>
+          </section>
+      </main>      
+      <br>
+      <br>
+    {% endfor %}
+    
+    {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4"  href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+    {% endif %}
+{% endblock content %}
+
+<script type="text/javascript">
+    document.getElementById('id_q').value = "{{query}}"
+</script>
